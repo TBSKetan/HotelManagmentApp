@@ -1,6 +1,6 @@
+import { AppString } from 'src/app/utility/constant';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Constant } from '../utility/constant';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { Constant } from '../utility/constant';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public stringName = Constant;
+  public stringName = AppString;
 
   constructor(private router: Router) {}
 

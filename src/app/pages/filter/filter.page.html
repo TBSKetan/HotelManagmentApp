@@ -3,13 +3,141 @@
     <ion-buttons slot="start">
       <ion-back-button color="light" defaultHref="search-chef"></ion-back-button>
     </ion-buttons>
-    <ion-title>Apply Filters</ion-title>
-    <ion-title slot="end">Reset</ion-title>
+    <ion-title>{{stringName.filterScreen.titleFilter}}</ion-title>
+    <ion-title slot="end" (onClick)="reset()">{{stringName.filterScreen.buttonReset}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="upperBox">
-    <h3>Meal Type</h3>
+    <h3>{{stringName.filterScreen.mealLabel}}</h3>
+    <ion-list>
+      <ion-radio-group (ionChange)="mealTypeChange($event)" [value]="filters.meal_type">
+        <ion-item>
+          <ion-label>{{stringName.filterScreen.mealTypes.mealTypeBreakfast}}</ion-label>
+          <ion-radio value="breakfast"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{stringName.filterScreen.mealTypes.mealTypeDinner}}</ion-label>
+          <ion-radio value="dinner"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{stringName.filterScreen.mealTypes.mealTypeLunch}}</ion-label>
+          <ion-radio value="lunch"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{stringName.filterScreen.mealTypes.mealTypeBrunch}}</ion-label>
+          <ion-radio value="brunch"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>{{stringName.filterScreen.mealTypes.mealTypeOther}}</ion-label>
+          <ion-radio value="other"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div class="upperBox">
+    <h3>{{stringName.filterScreen.cuisineLabel}}</h3>
+    <ion-radio-group (ionChange)="cuisineTypeChange($event)" [value]="filters.cuisine">
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+              <ion-label>{{stringName.filterScreen.cuisineTypes.cuisineTypeIndian}}</ion-label>
+              <ion-radio mode="md" item-left value="indian"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+              <ion-label>{{stringName.filterScreen.cuisineTypes.cuisineTypeAsian}}</ion-label>
+              <ion-radio mode="md" item-left value="asian"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+              <ion-label>{{stringName.filterScreen.cuisineTypes.cuisineTypeAmerican}}</ion-label>
+              <ion-radio mode="md" item-left value="american"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+              <ion-label>{{stringName.filterScreen.cuisineTypes.cuisineTypeAustralian}}</ion-label>
+              <ion-radio mode="md" item-left value="australian"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+              <ion-label>{{stringName.filterScreen.cuisineTypes.cuisineTypeFrench}}</ion-label>
+              <ion-radio mode="md" item-left value="french"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>{{stringName.filterScreen.cuisineTypes.cuisineTypeGreek}}</ion-label>
+            <ion-radio mode="md" item-left value="greek"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-radio-group>
+
+  </div>
+
+  <div class="upperBox">
+    <h3>{{stringName.filterScreen.distanceLabel}}</h3>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-range (ionChange)="distanceChange($event)" [value]="filters.distance" min="1" max="20" mode="ios" color="danger" [pin]="true"></ion-range>
+        <ion-label slot="end"> 1 Km</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="upperBox">
+    <h3>{{stringName.filterScreen.sortByLabel}}</h3>
+    <ion-list lines="none">
+      <ion-item>
+          <ion-label>{{stringName.filterScreen.mostPopularLabel}}</ion-label>
+          <ion-toggle (ionChange)="popularChange($event)" [value]="filters.popular" mode="ios"></ion-toggle>
+      </ion-item>
+      <hr style="border-bottom: 1px solid gray;" >
+    </ion-list>
+
+    <ion-list>
+      <ion-radio-group (ionChange)="highLowChange($event)" [value]="filters.priceByOrder">
+        <ion-item>
+          <ion-label>{{stringName.filterScreen.lowToHighLabel}}</ion-label>
+          <ion-radio mode="ios" value="lowToHigh"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{stringName.filterScreen.highToLowLabel}}</ion-label>
+          <ion-radio mode="ios" value="highToLow"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div class="upperBox">
+    <h3>{{stringName.filterScreen.priceLabel}}</h3>
+    <ion-list lines="none">
+        <ion-item>
+          <ion-range (ionChange)="priceChange($event)" min="1" dualKnobs="true" max="20" mode="ios" color="primary" [pin]="true"></ion-range>
+          <ion-label slot="end">${{filters.price.lowerPrice}} To ${{filters.price.higherPrice}}</ion-label>
+        </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="upperBox">
+    <ion-button expand="block" (click)="applyFilters()">{{stringName.filterScreen.titleFilter}}</ion-button>
   </div>
 </ion-content>
