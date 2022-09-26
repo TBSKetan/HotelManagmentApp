@@ -64,6 +64,7 @@ export class FilterPage implements OnInit {
   }
 
   reset(){
+    console.log("reset");
     this.filters = {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         meal_type: 'lunch',
@@ -75,7 +76,7 @@ export class FilterPage implements OnInit {
           lowerPrice: '5',
           higherPrice: '10',
     }
-    };
+    }
   }
 
   applyFilters(){

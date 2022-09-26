@@ -35,6 +35,10 @@ export const AppString = {
     lowToHighLabel:'Low To High',
     highToLowLabel:'High To Low',
     priceLabel:'Price',
-
+  },
+  loginScreen:{
+    titleLogin: 'Please Login to Your Account',
+    appTitle: 'HOTEL MANAGMENT APP',
+    
   }
 };

@@ -17,6 +17,10 @@ export class HomePage {
       case 1 :
         this.router.navigate(['/filter']);
         break;
+        
+      case 2 :
+        this.router.navigate(['/login']);
+        break;  
     }
   }
 
